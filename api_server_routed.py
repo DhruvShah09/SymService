@@ -31,7 +31,7 @@ from vllm.sampling_params import SamplingParams
 from vllm.transformers_utils.tokenizer import get_tokenizer
 from vllm.utils import random_uuid
 
-from vllm.entrypoints.openai.rtmdware import HttpUrlRedirectMiddleware
+from vllm.entrypoints.SymService.rtmdware import HttpUrlRedirectMiddleware
 
 try:
     import fastchat
@@ -154,7 +154,7 @@ async def health() -> Response:
     return Response(status_code=200)
 
 
-@app.get("/v1/models")
+@app.get("/models")
 async def show_available_models():
     """Show available models. Right now we only have one model."""
     model_cards = [
@@ -189,7 +189,7 @@ def create_logprobs(token_ids: List[int],
     return logprobs
 
 
-@app.post("/v1/chat/completions")
+@app.post("/chat/completions")
 async def create_chat_completion(request: ChatCompletionRequest,
                                  raw_request: Request):
     """Completion API similar to OpenAI's API.
@@ -368,7 +368,7 @@ async def create_chat_completion(request: ChatCompletionRequest,
     return response
 
 
-@app.post("/v1/completions")
+@app.post("/completions")
 async def create_completion(request: CompletionRequest, raw_request: Request):
     """Completion API similar to OpenAI's API.
 
