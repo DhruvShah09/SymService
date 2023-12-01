@@ -155,6 +155,7 @@ async def health() -> Response:
 
 
 @app.get("/models")
+@app.get("/v1/models")
 async def show_available_models():
     """Show available models. Right now we only have one model."""
     model_cards = [
@@ -188,7 +189,7 @@ def create_logprobs(token_ids: List[int],
         })
     return logprobs
 
-
+@app.post("/v1/chat/completions")
 @app.post("/chat/completions")
 async def create_chat_completion(request: ChatCompletionRequest,
                                  raw_request: Request):
@@ -369,6 +370,7 @@ async def create_chat_completion(request: ChatCompletionRequest,
 
 
 @app.post("/completions")
+@app.post("/v1/completions")
 async def create_completion(request: CompletionRequest, raw_request: Request):
     """Completion API similar to OpenAI's API.
 
