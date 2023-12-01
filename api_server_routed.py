@@ -45,7 +45,7 @@ TIMEOUT_KEEP_ALIVE = 5  # seconds
 
 logger = init_logger(__name__)
 served_model = None
-app = fastapi.FastAPI()
+app = fastapi.FastAPI(title="Silly API!")
 app.add_middleware(HttpUrlRedirectMiddleware)
 engine = None
 
