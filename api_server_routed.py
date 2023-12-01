@@ -199,8 +199,8 @@ async def create_chat_completion(request: ChatCompletionRequest,
     for the API specification. This API mimics the OpenAI ChatCompletion API.
 
     NOTE: Currently we do not support the following features:
-        - function_call (Users should implement this by themselves)
-        - logit_bias (to be supported by vLLM engine)
+        - function_call
+        - logit_bias
     """
     logger.info(f"Received chat completion request: {request}")
 
@@ -378,11 +378,9 @@ async def create_completion(request: CompletionRequest, raw_request: Request):
     for the API specification. This API mimics the OpenAI Completion API.
 
     NOTE: Currently we do not support the following features:
-        - echo (since the vLLM engine does not currently support
-          getting the logprobs of prompt tokens)
-        - suffix (the language models we currently support do not support
-          suffix)
-        - logit_bias (to be supported by vLLM engine)
+        - echo (no logprobs :( )
+        - suffix (no suffix by models currently supported)
+        - logit_bias
     """
     logger.info(f"Received completion request: {request}")
 
